@@ -14,8 +14,42 @@
 #      def ==(other)
 #        return self.date == other.date
 #      end
+class User
 
+  attr_accessor :username
 
+  def initialize(username)
+  @username = username
+  @blog_count = 1
+  @blogs_array = []
+  end
+
+  def add_blog(date, text)
+    @date = date
+    @text = text
+
+    @blogs_array.push('blog' + @blog_count.to_s)
+    @blog_count += 1
+  end
+
+  def blogs
+    return @blogs_array
+  end
+end
+
+class Blog
+  attr_accessor :text, :date, :user
+  def initialize(text, date, user)
+  @text = text
+  @date = date
+  @user = user
+end
+
+  def summary
+    first 10 words
+  end
+
+end
 
 # ==========  EXAMPLE  ==========
 #
