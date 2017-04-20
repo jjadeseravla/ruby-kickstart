@@ -91,7 +91,7 @@ end
 # blog5.entry      # => disloyalist.party 2009-01-02
 #                       From the school of revision, Comes the standard inventor's rule, Books of subtle notation Compositions, all original
 #                       I am a pioneer, synthetic engineer, On the brink of discovery, On the eve of historic light, Worked in secret for decades,
-#                       All my labor will be lost with time
+#                       All my labor will be lost with tim
 
 
 
