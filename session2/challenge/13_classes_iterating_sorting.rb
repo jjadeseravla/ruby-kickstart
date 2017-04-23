@@ -14,41 +14,85 @@
 #      def ==(other)
 #        return self.date == other.date
 #      end
-class User
 
-  attr_accessor :username
+
+# class User
+#
+#   attr_accessor :username
+#
+#   def initialize(username)
+#   @username = username
+#   @blog_count = 1
+#   @blogs_array = []
+#   end
+#
+#   def add_blog(date, text)
+#     @date = date
+#     @text = text
+#
+#     @blogs_array.push('blog' + @blog_count.to_s)
+#     @blog_count += 1
+#   end
+#
+#   def blogs
+#     return @blogs_array
+#   end
+# end
+#
+# class Blog
+#   attr_accessor :text, :date, :user
+#   def initialize(text, date, user)
+#   @text = text
+#   @date = date
+#   @user = user
+# end
+#
+#   def summary
+#     first 10 words
+#   end
+# end
+require 'date'
+
+class User
+  attr_accessor :username, :blogs
 
   def initialize(username)
-  @username = username
-  @blog_count = 1
-  @blogs_array = []
+    self.username = username
+    self.blogs    = []
   end
 
   def add_blog(date, text)
-    @date = date
-    @text = text
-
-    @blogs_array.push('blog' + @blog_count.to_s)
-    @blog_count += 1
-  end
-
-  def blogs
-    return @blogs_array
+    added_blog = Blog.new(date, self, text)
+    blogs << added_blog
+    self.blogs = blogs.sort_by { |blog| blog.date }.reverse
+    added_blog
   end
 end
+
+
 
 class Blog
-  attr_accessor :text, :date, :user
-  def initialize(text, date, user)
-  @text = text
-  @date = date
-  @user = user
-end
+  attr_accessor :date, :user, :text
 
-  def summary
-    first 10 words
+  def initialize(date, user, text)
+    self.date = date
+    self.user = user
+    self.text = text
   end
 
+  def summary
+    text.split[0..9].join(' ')
+  end
+
+  def entry
+    "#{user.username} #{date}\n#{text}"
+  end
+
+  def ==(other)
+    date   == other.date &&
+      user == other.user &&
+      text == other.text
+  end
 end
 
 # ==========  EXAMPLE  ==========
