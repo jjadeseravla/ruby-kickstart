@@ -17,3 +17,29 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(determinant, *element)
+  output = []
+
+  if determinant
+    element.each_slice(2) do |i|
+      if (!!i[0] != !!i[1])
+        output.push(true)
+      else
+        output.push(false)
+      end
+    end
+  else
+    element.each_slice(2) do |i|
+      if (!!i[0] == !!i[1])
+        output.push(true)
+      else
+        output.push(false)
+      end
+    end
+  end
+  return output
+end
+
+# if index[0] == true, ---> then index[1] == index[2] --> false
+#if index[0] == false, ---> then index[1] == index[2] --> true
+# 0 == true, nil == false

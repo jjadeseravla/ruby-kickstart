@@ -7,4 +7,12 @@
 # staircase 3  # => {1 => [], 3 => [2]}
 # staircase 4  # => {1 => [], 3 => [2]}
 # staircase 5  # => {1 => [], 3 => [2], 5 =>[2, 4]}
-
+def staircase(n)
+  hash = Hash.new
+  for i in 1..n
+    if i % 2 != 0
+      hash[i] = (1..i).select  {|v| v % 2 == 0}
+    end
+  end
+  return hash
+end
